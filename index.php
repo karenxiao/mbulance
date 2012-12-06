@@ -1,51 +1,52 @@
 <?php
 
-session_start();
-
 require_once("response.php");
 require_once("trees.php");
 
+session_start();
+
 $r = new Response();
 
-// code to look up the specific string in the tree
-$_SESSION['code'] = "";
-
-if($_REQUEST['event']=="NewCall") 
+if ($_REQUEST['event']=="NewCall") 
   {
     $cd = new CollectDtmf();
+    $cd->setMaxDigits("1");
     $cd->setTimeOut("4000");
-    $cd->addPlayText("Welcome to Em Bulance mobile diagnostic system. To begin, press 1. To respond yes to a question, press 1. To respond no to a question press 2.");
+    $cd->addPlayText("Welcome to em bulance mobile healthcare diagnostic service. Press one to begin.");
+
+    $_SESSION['code'] = "";
+
     $r->addCollectDtmf($cd);
     $r->send();
   } 
 
-while($_REQUEST['event']=="GotDTMF")
-   {
-
+else if ($_REQUEST['event']=="GotDTMF")
+  {
      $response = $_REQUEST['data'];
-
-     if ($response == 1)
+     
+     if ($response == 1 || $response == 0)
        {
+	 $code = $_SESSION['code'] . $response;
+	 $string = $cold[$code];
+
 	 $cd = new CollectDtmf();
+	 $cd->setMaxDigits("1");
 	 $cd->setTimeOut("4000");
-	 $code = $_SESSION['code'] . '1';
-	 $cd->addPlayText($code);
+	 $cd->addPlayText($string);
+
 	 $r->addCollectDtmf($cd);
 	 $r->send();
        }
-     else if ($response == 2)
+     else
        {
-	 $cd = new CollectDtmf();
-	 $cd->setTimeOut("4000");
-	 $code = $_SESSION['code'] . '0';
-	 $cd->addPlayText($code);
-	 $r->addCollectDtmf($cd);
-	 $r->send(); 
+	 $r->addPlayText("Sorry. That is not a valid response. Please press one for yes, two for no.");
+	 $r->send();
        }
-
    } 
-
-$r->addHangup();
-$r->send();
-
+else 
+  {
+     $r->addPlayText("Goodbye!");
+     $r->addHangup();
+     $r->send();
+  }
 ?>
