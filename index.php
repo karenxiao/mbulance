@@ -26,8 +26,8 @@ else if ($_REQUEST['event']=="GotDTMF")
      
      if ($response == 1 || $response == 0)
        {
-	 $code = $_SESSION['code'] . $response;
-	 $string = $cold[$code];
+	 $_SESSION['code'] .= $response;
+	 $string = $cold[$_SESSION['code']];
 
 	 $cd = new CollectDtmf();
 	 $cd->setMaxDigits("1");
@@ -37,15 +37,23 @@ else if ($_REQUEST['event']=="GotDTMF")
 	 $r->addCollectDtmf($cd);
 	 $r->send();
        }
+
+     else if ($response == 2)
+       {
+	 $r->addPlayText("Thank you for using em bulance. Goodbye!");
+	 $r->addHangup();
+	 $r->send();
+       }
+
      else
        {
-	 $r->addPlayText("Sorry. That is not a valid response. Please press one for yes, two for no.");
+	 $r->addPlayText("Sorry. That is not a valid response. Please press one for yes, zero for no.");
 	 $r->send();
        }
    } 
 else 
   {
-     $r->addPlayText("Goodbye!");
+     $r->addPlayText("Sorry. The system has timed out. Goodbye!");
      $r->addHangup();
      $r->send();
   }
