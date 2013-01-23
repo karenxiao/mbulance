@@ -5,6 +5,8 @@ require_once("trees.php");
 
 session_start();
 
+$stats[];
+
 $r = new Response();
 
 if ($_REQUEST['event']=="NewCall") 
@@ -15,6 +17,7 @@ if ($_REQUEST['event']=="NewCall")
     $cd->addPlayText("Welcome to em bulance mobile healthcare diagnostic service. Press one to begin.");
 
     $_SESSION['code'] = "";
+    $_SESSION['state'] = 1;
 
     $r->addCollectDtmf($cd);
     $r->send();
@@ -23,6 +26,14 @@ if ($_REQUEST['event']=="NewCall")
 else if ($_REQUEST['event']=="GotDTMF")
   {
      $response = $_REQUEST['data'];
+     
+     if ($_SESSION['state'] == 0)
+       {
+	 $stats['rating'] = $response;
+	 $r->addPlayText("Thanks again for using em bulance. Goodbye");
+	 $r->addHangup();
+	 $r->send();
+       }
      
      if ($response == 1 || $response == 0)
        {
@@ -40,8 +51,14 @@ else if ($_REQUEST['event']=="GotDTMF")
 
      else if ($response == 2)
        {
-	 $r->addPlayText("Thank you for using em bulance. Goodbye!");
-	 $r->addHangup();
+	 $_SESSION['state'] = 0;
+
+	 $cd = new CollectDtmf();
+         $cd->setMaxDigits("1");
+         $cd->setTimeOut("4000");
+	 $cd->addPlayText("Thank you for using em bulance. Before you hang up, please rate your experience today on a scale of one to five.");
+	
+	 $r->addCollectDtmf($cd);
 	 $r->send();
        }
 
@@ -57,4 +74,5 @@ else
      $r->addHangup();
      $r->send();
   }
+
 ?>
