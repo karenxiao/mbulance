@@ -12,7 +12,7 @@ if ($_REQUEST['event']=="NewCall")
     $cd = new CollectDtmf();
     $cd->setMaxDigits("1");
     $cd->setTimeOut("4000");
-    $cd->addPlayAudio("http://www.karenxiao.com/mbulance/mbulance/audio/audio1.wav");
+    $cd->addPlayAudio("http://www.karenxiao.com/mbulance/mbulance/audio/cold/e2.wav");
     $r->addCollectDtmf($cd);
     $r->send();
   } 
