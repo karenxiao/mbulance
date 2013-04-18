@@ -1,0 +1,76 @@
+04:32:36 (index) response received:1!!
+
+04:32:45 (index) response received:!!
+
+04:32:54 (index) response received:!!
+
+04:32:55 (index) Stage of timeout : 1
+
+04:42:05 (index) response received:1!!
+
+04:42:08 (index) response received:0!!
+
+04:42:16 (index) Stage of timeout : 10
+
+04:42:20 (index) Stage of timeout : 10
+
+04:43:21 (index) response received:1!!
+
+04:43:24 (index) response received:0!!
+
+04:43:29 (index) response received:0!!
+
+04:43:33 (index) response received:1!!
+
+04:44:13 (index) Stage of timeout : 1001
+
+04:45:41 (index) response received:1!!
+
+04:45:50 (index) response received:!!
+
+04:45:58 (index) response received:!!
+
+04:46:07 (index) response received:!!
+
+04:46:16 (index) Stage of timeout : 1
+
+04:50:48 (index) response received:1!!
+
+04:50:57 (index) response is null.. got the correct if case
+
+04:50:57 (index) Stage of timeout : 1
+
+05:07:20 (index) response received:1!!
+
+05:07:23 (index) response received:1!!
+
+05:07:25 (index) response received:0!!
+
+05:07:28 (index) response received:0!!
+
+05:07:33 (index) response received:0!!
+
+05:07:39 (index) Stage of user hangup : 11000
+
+05:51:29 (index) Stage of user hangup : 
+
+05:52:20 (index) Stage of user hangup : 101
+
+05:54:12 (index) phone: 8146317215
+
+05:54:55 (index) phone: 8146317215
+
+05:55:15 (index) Stage of system timeout : 10
+
+05:55:32 (index) phone: 8146317215
+
+06:00:44 (index) 8146317215	Stage of system timeout : 1101
+
+13:59:01 (index) 8146317215	Stage of system timeout : 110000
+
+14:01:33 (index) 8146317215	Stage of system timeout : 11
+
+14:03:29 (index) 8968140575	Stage of system timeout : 11
+
+14:03:53 (index) 8146317215	Stage of user hangup : 1
+
