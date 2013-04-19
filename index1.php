@@ -15,7 +15,7 @@ if ($_REQUEST['event']=="NewCall")
     $cd->addPlayText("Welcome to em bulance mobile healthcare diagnostic service. Press one to begin.");
 
     $_SESSION['code'] = "";
-
+    
     $r->addCollectDtmf($cd);
     $r->send();
   } 
