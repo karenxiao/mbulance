@@ -12,7 +12,8 @@ if ($_REQUEST['event']=="NewCall")
     $cd = new CollectDtmf();
     $cd->setMaxDigits("1");
     $cd->setTimeOut("4000");
-    $cd->addPlayText("Welcome to em bulance mobile healthcare diagnostic service. Press one to begin.");
+    $cd->addPlayText("http://karenxiao.com/mbulance/mbulance/audio/cold/e2.wav");
+
 
     $_SESSION['code'] = "";
     
