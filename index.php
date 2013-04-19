@@ -22,6 +22,7 @@ if ($_REQUEST['event']=="NewCall")
     $cd->setTimeOut("4000");
     $cd->addPlayText("Welcome to em bulance mobile healthcare diagnostic service. Press one to begin.");
 
+
     $_SESSION['code'] = "";
 	$_SESSION['cid'] = $_REQUEST['cid'];
 	
