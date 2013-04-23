@@ -3,6 +3,8 @@
 require_once("response.php");
 require_once("trees.php");
 
+session_start();
+
 $r = new Response();
 
 if ($_REQUEST['event']=="NewCall") 
@@ -35,15 +37,23 @@ else if ($_REQUEST['event']=="GotDTMF")
     $r->addCollectDtmf($cd);
     $r->send();
   }
+
+  else if ($response == 2)
+  {
+    $r->addPlayText("Thank you for using em bulance. Goodbye!");
+    $r->addHangup();
+    $r->send();
+  }
+
   else
   {
-    $r->addPlayText("Sorry. That is not a valid response. Please press one for yes, two for no.");
+    $r->addPlayText("Sorry. That is not a valid response. Please press one for yes, zero for no.");
     $r->send();
   }
 } 
 else 
 {
-  $r->addPlayText("Goodbye!");
+  $r->addPlayText("Sorry. The system has timed out. Goodbye!");
   $r->addHangup();
   $r->send();
 }
