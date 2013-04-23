@@ -5,8 +5,6 @@ require_once("trees.php");
 require_once("Logging.php");
 require_once("lib.php");
 
-session_start();
-
 $rating_log = new Logging();
 $rating_log->lfile("logs/rating_logs");
 
