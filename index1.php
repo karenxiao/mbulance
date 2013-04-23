@@ -27,12 +27,12 @@ else if ($_REQUEST['event']=="GotDTMF")
   if ($response == 1 || $response == 0)
   {
     $_SESSION['code'] .= $response;
-    $string = "http://karenxiao.com/mbulance/mbulance/audio/cold/e" . $_SESSION['code'] . ".wav";
+    $string = $cold[$_SESSION['code']];
 
     $cd = new CollectDtmf();
     $cd->setMaxDigits("1");
     $cd->setTimeOut("4000");
-    $cd->addPlayAudio($string);
+    $cd->addPlayText($string);
 
     $r->addCollectDtmf($cd);
     $r->send();
